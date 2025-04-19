@@ -1,0 +1,28 @@
+#include <iostream>
+#include <unordered_set>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    unordered_set<int> distinct_elements;
+    vector<int> arr(n);
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+        distinct_elements.insert(arr[i]);
+    }
+
+    vector<int> result(distinct_elements.begin(), distinct_elements.end());
+    int count = min(3, (int)result.size());
+    
+    for (int i = 0; i < count; i++) {
+        int max_val = *max_element(result.begin(), result.end());
+        cout << max_val << " ";
+        result.erase(remove(result.begin(), result.end(), max_val), result.end());
+    }
+
+    cout << endl;
+    return 0;
+}
